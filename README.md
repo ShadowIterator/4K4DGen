@@ -1,2 +1,36 @@
 # 4K4DGen: Panoramic 4D Generation at 4K Resolution
 
+<div>
+    Renjie Li<sup>1,4</sup>&nbsp;&nbsp;&nbsp;
+    Panwang Pan<sup>1</sup>&nbsp;&nbsp;&nbsp;
+    Bangbang Yang<sup>1</sup>&nbsp;&nbsp;&nbsp;
+    Dejia Xu<sup>2</sup>&nbsp;&nbsp;&nbsp;
+    Shijie Zhou<sup>3</sup>&nbsp;&nbsp;&nbsp;
+    Xuanyang Zhang<sup>1</sup>&nbsp;&nbsp;&nbsp;
+    Zeming Li<sup>1</sup>&nbsp;&nbsp;&nbsp;
+    Achuta Kadambi<sup>3</sup>&nbsp;&nbsp;&nbsp;
+    Zhangyang Wang<sup>2</sup>&nbsp;&nbsp;&nbsp;
+    Zhengzhong Tu<sup>4</sup>&nbsp;&nbsp;&nbsp;
+    Zhiwen Fan<sup>2</sup>&nbsp;&nbsp;&nbsp;
+</div>
+
+<div>
+    <span><sup>1</sup>ByteDance </span>
+    <span>&nbsp;&nbsp;</span>
+    <span><sup>2</sup>UT Austin </span>
+    <span>&nbsp;&nbsp;</span>
+    <span><sup>3</sup>UCLA </span>
+    <span>&nbsp;&nbsp;</span>
+    <span><sup>4</sup>TAMU </span>
+</div>
+
+-----------------------------
+
+![HeadDemo](output/example/I2.gif)
+
+## Release Checklist
+- [ ] Code release for Lifting Phase
+- [ ] Code release for Animation Phase
+- [x] Testing 16 scene data set release
+
+
