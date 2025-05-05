@@ -34,3 +34,7 @@
 - [x] Testing 16 scene data set release
 
 
+## Data
+Please download the testing panorama in the [Google Drive](https://drive.google.com/drive/folders/18vwRuy12Nest0zqSOyobeGBuPpDTuYbO?usp=sharing).
+
+
