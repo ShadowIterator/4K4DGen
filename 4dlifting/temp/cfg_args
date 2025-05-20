@@ -1,0 +1,1 @@
+Namespace(sh_degree=3, source_path='/data1/tzz/videogen_rel/4dlifting/data/4KI2GIF/I2', model_path='./temp', images='images', resolution=-1, white_background=False, data_device='cuda', eval=False, depth_estimator='MIDAS', depth_min=0.01, depth_max=2.5)
