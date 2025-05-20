@@ -29,8 +29,8 @@
 ![HeadDemo](output/example/I2.gif)
 
 ## Release Checklist
-- [ ] Code release for Lifting Phase
 - [ ] Code release for Animation Phase
+- [x] Code release for Lifting Phase
 - [x] Testing 16 scene data set release
 
 
@@ -38,3 +38,14 @@
 Please download the testing panorama in the [Google Drive](https://drive.google.com/drive/folders/18vwRuy12Nest0zqSOyobeGBuPpDTuYbO?usp=sharing).
 
 
+## 4D Lifting
+to run 4D lifting, first generate initial points.
+```
+python generate_init_geo_4k.py -s <source_path> -m <target_path>
+```
+this command will generate separate folders in \<source_path\> for each frame. 
+
+Then lifting the frames using:
+```
+python train.py -s <source_path>/<frame_id> -m <target_path>/<frame_id>
+```
