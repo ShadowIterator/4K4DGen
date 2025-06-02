@@ -29,7 +29,8 @@
 ![HeadDemo](output/example/I2.gif)
 
 ## Release Checklist
-- [ ] Code release for Animation Phase
+- [ ] Complete documents
+- [x] Code release for Animation Phase
 - [x] Code release for Lifting Phase
 - [x] Testing 16 scene data set release
 

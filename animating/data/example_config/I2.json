@@ -1,0 +1,38 @@
+{
+    "lr": {
+        "switch_to_sliding_window_time": 5,
+        "start_denoising_step": 0,
+        "window_size": [
+            64,
+            64
+        ],
+        "stride": [
+            32,
+            32
+        ],
+        "npts1": 200000000,
+        "npts2": 20000000,
+        "resolution": [
+            1024,
+            2048
+        ]
+    },
+    "hr": {
+        "switch_to_sliding_window_time": 0,
+        "start_denoising_step": 5,
+        "window_size": [
+            128,
+            128
+        ],
+        "stride": [
+            64,
+            64
+        ],
+        "npts1": 200000000,
+        "npts2": 20000000,
+        "resolution": [
+            2048,
+            4096
+        ]
+    }
+}

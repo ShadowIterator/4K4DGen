@@ -1,0 +1,2 @@
+python gen4k.py --config ./svd_mask_config.yaml --eval validation_data.prompt_image=data/example/I2.jpg validation_data.mask=data/example_mask/I2.png validation_data.config=data/example_config/I2.json pretrained_model_path=pretrained/animate_anything_svd_v1.0 --diff_mode return_latents
+python gen4k.py --config ./svd_mask_config.yaml --eval validation_data.prompt_image=data/example/I2.jpg validation_data.mask=data/example_mask/I2.png validation_data.config=data/example_config/I2.json pretrained_model_path=pretrained/animate_anything_svd_v1.0 --diff_mode decode_latents
