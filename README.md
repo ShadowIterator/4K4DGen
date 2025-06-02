@@ -38,7 +38,8 @@
 ## Data
 Please download the testing panorama in the [Google Drive](https://drive.google.com/drive/folders/18vwRuy12Nest0zqSOyobeGBuPpDTuYbO?usp=sharing).
 
-
+## Animating
+Please refer to the [Animating](./animating/README.md) folder.
 ## 4D Lifting
 to run 4D lifting, first generate initial points.
 ```
@@ -50,3 +51,5 @@ Then lifting the frames using:
 ```
 python train.py -s <source_path>/<frame_id> -m <target_path>/<frame_id>
 ```
+
+
