@@ -1,8 +1,8 @@
-# 4K4DGen: Panoramic 4D Generation at 4K Resolution
+# [ICLR Spotlight] 4K4DGen: Panoramic 4D Generation at 4K Resolution
 
 <div>
     Renjie Li<sup>1,4</sup>&nbsp;&nbsp;&nbsp;
-    Panwang Pan<sup>1</sup>&nbsp;&nbsp;&nbsp;
+    Panwang Pan<sup>1‡</sup>&nbsp;&nbsp;&nbsp;
     Bangbang Yang<sup>1</sup>&nbsp;&nbsp;&nbsp;
     Dejia Xu<sup>2</sup>&nbsp;&nbsp;&nbsp;
     Shijie Zhou<sup>3</sup>&nbsp;&nbsp;&nbsp;
