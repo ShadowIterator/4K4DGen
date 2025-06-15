@@ -8,7 +8,7 @@
 
 
 
-[Renjie Li<sup>1,4*</sup>](https://shadowiterator.github.io/), [Panwang Pan<sup>1*‡</sup>](https://chenguolin.github.io), [Bangbang Yang<sup>1*</sup>](https://ybbbbt.com/), [Dejia Xu<sup>2*</sup>](https://ir1d.github.io/), [Shijie Zhou<sup>3</sup>](https://shijiezhou-ucla.github.io/), [Xuanyang Zhang<sup>1</sup>](https://scholar.google.com/citations?user=oPV20eMAAAAJ), [Zeming Li<sup>1</sup>](https://www.zemingli.com/),
+[Renjie Li<sup>1,4*</sup>](https://shadowiterator.github.io/), [Panwang Pan<sup>1*‡</sup>](https://paulpanwang.github.io/), [Bangbang Yang<sup>1*</sup>](https://ybbbbt.com/), [Dejia Xu<sup>2*</sup>](https://ir1d.github.io/), [Shijie Zhou<sup>3</sup>](https://shijiezhou-ucla.github.io/), [Xuanyang Zhang<sup>1</sup>](https://scholar.google.com/citations?user=oPV20eMAAAAJ), [Zeming Li<sup>1</sup>](https://www.zemingli.com/),
 [Achuta Kadambi<sup>3</sup>](https://samueli.ucla.edu/people/achuta-kadambi/), [Zhangyang Wang<sup>2</sup>](https://wncg.org/people/faculty/atlas-wang),
 [Zhengzhong Tu<sup>4</sup>](https://vztu.github.io/), [Zhiwen Fan<sup>2</sup>](https://zhiwenfan.github.io/)
  
