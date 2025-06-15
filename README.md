@@ -130,14 +130,11 @@ We built this from [AnimateAnything](https://github.com/alibaba/animate-anything
 ## Bibtex
 If you find our work useful for your project, please consider citing the following paper.
 ```
-@misc{li20244k4dgenpanoramic4dgeneration,
-      title={4K4DGen: Panoramic 4D Generation at 4K Resolution}, 
-      author={Renjie Li and Panwang Pan and Bangbang Yang and Dejia Xu and Shijie Zhou and Xuanyang Zhang and Zeming Li and Achuta Kadambi and Zhangyang Wang and Zhengzhong Tu and Zhiwen Fan},
-      year={2024},
-      eprint={2406.13527},
-      archivePrefix={arXiv},
-      primaryClass={cs.CV},
-      url={https://arxiv.org/abs/2406.13527}, 
+@article{li20244k4dgen,
+  title={4k4dgen: Panoramic 4d generation at 4k resolution},
+  author={Li, Renjie and Pan, Panwang and Yang, Bangbang and Xu, Dejia and Zhou, Shijie and Zhang, Xuanyang and Li, Zeming and Kadambi, Achuta and Wang, Zhangyang and Tu, Zhengzhong and others},
+  journal={International Conference on Learning Representations},
+  year={2024}
 }
 ```
 
