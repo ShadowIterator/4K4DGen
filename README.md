@@ -117,7 +117,7 @@ You can also run the example bash file:
 ```
 bash ./generate_example.sh
 ```
-## 4D Lifting
+### 4D Lifting
 to run 4D lifting, please refer to the following.
 ```
 cd 4dlifting
