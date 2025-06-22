@@ -39,7 +39,7 @@
 ![HeadDemo](output/example/I2.gif)
 
 ## Release Checklist
-- [ ] Complete documents
+- [x] Complete documents
 - [x] Code release for Animation Phase
 - [x] Code release for Lifting Phase
 - [x] Testing 16 scene data set release
@@ -129,7 +129,11 @@ python train.py -s <source_path>/<frame_id> -m <target_path>/<frame_id>
 ```
 
 ### One Command Running
-Coming soon
+using the script as following:
+```
+python run.py --input_img <your_image_path_or_folder>
+```
+If you have setup the data and environments as above, it will generate a running script `run.sh`. You can simply run `bash ./run.sh` to generate the 4D scene from your input images. For more options of the script, please see `python run.py --help`.
 
 ## Acknowledgements
 We built this from [AnimateAnything](https://github.com/alibaba/animate-anything), [MultiDiffusion](https://github.com/omerbt/MultiDiffusion), and [DreamScene360](https://github.com/ShijieZhou-UCLA/DreamScene360).
