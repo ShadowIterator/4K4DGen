@@ -18,7 +18,7 @@ from utils.loss_utils import l1_loss, ssim, cosine_similarity_loss
 from gaussian_renderer import render #, network_gui
 from torchmetrics.functional.regression import pearson_corrcoef
 import sys
-from scene import Scene, GaussianModel
+from scenegif4K import Scene, GaussianModel
 from utils.general_utils import safe_state
 import uuid
 from tqdm import tqdm
