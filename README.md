@@ -60,7 +60,7 @@ conda env create -f environment.yml
 Please first set your working directory to `./animating`
 
 #### Prepare Data
-The testing panorama is in the [Google Drive](https://drive.google.com/drive/folders/18vwRuy12Nest0zqSOyobeGBuPpDTuYbO?usp=sharing).
+The testing panorama is in the [Google Drive](https://drive.google.com/file/d/1W7FdR-VSbAUD47quC8aYdU1vHQFEGq4u/view?usp=sharing).
 For **Animating**, please extract the data under the `./animating/data` folder. To run on your own data, please organize the data as following:
 ```
 data
@@ -80,7 +80,7 @@ data
 You can also refer to the example provided in the `data` folder.
 
 #### Prepare Checkpoint
-Download the checkpoint in [googledrive](). Extract it at `animating/pretrained`.
+Download the checkpoint in [googledrive](https://drive.google.com/file/d/1H6v06DZuHeYhXCz3Rj8OL55y92sp990h/view?usp=sharing). Extract it at `animating/pretrained`.
 
 ### Lifting
 Please first set your working directory to `./4dlifting`
@@ -97,7 +97,7 @@ data
 You can also refer to the `I2` folder provided as an example under the `data` folder.
 
 #### Prepare Checkpoints
-Please download the checkpoints from [googledrive](). Place them under the `./pre_checkpoints` folder
+Please download the checkpoints from [googledrive](https://drive.google.com/file/d/1UKvuTp4wNKotrFOVb3OOZlW9TbOf4rkz/view?usp=sharing). Place them under the `./pre_checkpoints` folder
 
 
 

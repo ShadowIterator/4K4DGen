@@ -219,85 +219,61 @@ class Scene:
         self.perturbation_cameras_stage3 = {} ###
 
         if generate_geo:
-             self.generate_from_gif(args, gaussians, api_key, prompt_eng, num_prompt, max_rounds, load_iteration, shuffle, resolution_scales)
-        return
+            self.generate_from_gif(args, gaussians, api_key, prompt_eng, num_prompt, max_rounds, load_iteration, shuffle, resolution_scales)
+        else:
+            self.init_scene(args, gaussians, api_key, prompt_eng, num_prompt, max_rounds, load_iteration, shuffle, resolution_scales)
             
-        
+    # def __init__(self, args : ModelParams, gaussians : GaussianModel,  api_key, prompt_eng, num_prompt, max_rounds, load_iteration=None, shuffle=True, resolution_scales=[1.0], generate_geo=False):
 
-    def generate_from_gif_frames(self, args : ModelParams, gaussians : GaussianModel,  api_key, prompt_eng, num_prompt, max_rounds, load_iteration=None, shuffle=True, resolution_scales=[1.0],):
-        """b
-        :param path: Path to colmap scene main folder.
-        """
-        self.model_path = args.model_path
-        self.loaded_iter = None
-        self.gaussians = gaussians
+    def init_scene(self, args : ModelParams, gaussians : GaussianModel,  api_key, prompt_eng, num_prompt, max_rounds, load_iteration=None, shuffle=True, resolution_scales=[1.0], generate_geo=False):
+        ## Change loading multi views data to pano ###
+        if os.path.exists(os.path.join(args.source_path, "sparse")):
+            scene_info = sceneLoadTypeCallbacks["Colmap"](args.source_path, args.images, args.eval)
+        elif os.path.exists(os.path.join(args.source_path, "transforms_train.json")):
+            print("Found transforms_train.json file, assuming Blender data set!")
+            scene_info = sceneLoadTypeCallbacks["Blender"](args.source_path, args.white_background, args.eval) 
+        if not self.loaded_iter:
+            #with open(scene_info.ply_path, 'rb') as src_file, open(os.path.join(self.model_path, "input.ply") , 'wb') as dest_file:
+            #    dest_file.write(src_file.read())
+            json_cams = []
+            camlist = []
+            if scene_info.test_cameras:
+                camlist.extend(scene_info.test_cameras)
+            if scene_info.train_cameras:
+                camlist.extend(scene_info.train_cameras)
+            for id, cam in enumerate(camlist):
+                json_cams.append(camera_to_JSON(id, cam))
+            with open(os.path.join(self.model_path, "cameras.json"), 'w') as file:
+                json.dump(json_cams, file)
 
-        if load_iteration:
-            if load_iteration == -1:
-                self.loaded_iter = searchForMaxIteration(os.path.join(self.model_path, "point_cloud"))
-            else:
-                self.loaded_iter = load_iteration
-            print("Loading trained model at iteration {}".format(self.loaded_iter))
+        if shuffle:
+            random.shuffle(scene_info.train_cameras)  # Multi-res consistent random shuffling
+            random.shuffle(scene_info.test_cameras)  # Multi-res consistent random shuffling
+            random.shuffle(scene_info.perturbation_cameras_stage1)  ###
+            random.shuffle(scene_info.perturbation_cameras_stage2)  ###
+            random.shuffle(scene_info.perturbation_cameras_stage3)  ###
 
-        self.train_cameras = {}
-        self.test_cameras = {}
-        self.perturbation_cameras_stage1 = {} ###
-        self.perturbation_cameras_stage2 = {} ###
-        self.perturbation_cameras_stage3 = {} ###
+        self.cameras_extent = scene_info.nerf_normalization["radius"]
 
-        assert any(filename.endswith('.gif') for filename in os.listdir(args.source_path))
-        
-        files = [f for f in os.listdir(args.source_path) if f.endswith('.gif')]
-        img_path = os.path.join(args.source_path, files[0]) ### only 1 pano image in the folder
-        
-        gif_data = Image.open(img_path)
-        frames = []
-        for k, frame in enumerate(ImageSequence.Iterator(gif_data)):
-            frame = frame.convert('RGB')
-            frame = frame.resize((2048, 1024))
-            np_curr = np.asarray(frame).astype(np.uint8) # should be H W 3, uint8
-            torch_curr = read_image(np_curr, to_torch=True, squeeze=True, pass_img=True).cuda()
-            frames.append(torch_curr)
-        frames_torch = torch.stack(frames)
+        for resolution_scale in resolution_scales:
+            print("Loading Training Cameras")
+            self.train_cameras[resolution_scale] = cameraList_from_camInfos(scene_info.train_cameras, resolution_scale, args)
+            print("Loading Test Cameras")
+            self.test_cameras[resolution_scale] = cameraList_from_camInfos(scene_info.test_cameras, resolution_scale, args)
+            print("Loading Perturbation Cameras") ###
+            self.perturbation_cameras_stage1[resolution_scale] = cameraList_from_camInfos(scene_info.perturbation_cameras_stage1, resolution_scale, args)
+            self.perturbation_cameras_stage2[resolution_scale] = cameraList_from_camInfos(scene_info.perturbation_cameras_stage2, resolution_scale, args)
+            self.perturbation_cameras_stage3[resolution_scale] = cameraList_from_camInfos(scene_info.perturbation_cameras_stage3, resolution_scale, args)
 
-        img = frames_torch[0]
-        img = cv.resize(img.cpu().numpy(), (2048, 1024), cv.INTER_AREA)
-        img = torch.from_numpy(img).cuda()
-        motion_mask_path = img_path.replace('.gif','_mask.png')
-
-        motion_mask = Image.open(motion_mask_path)
-        motion_mask = motion_mask.resize((2048, 1024))
-        motion_mask = np.asarray(motion_mask)
-        motion_mask = (motion_mask != 0)
-        motion_mask = torch.from_numpy(motion_mask)
-
-        
-        motion_mask = motion_mask.float()
-        
-        joint_predictor = PanoJointPredictorGIF(args)
-        height, width, _ = img.shape
-        distances_list, rot_w2c, fx, fy, cx, cy, pers_imgs, pers_coords = joint_predictor(frames_torch,motion_mask.cuda())
+        if self.loaded_iter:
+            self.gaussians.load_ply(os.path.join(self.model_path,
+                                                           "point_cloud",
+                                                           "iteration_" + str(self.loaded_iter),
+                                                           "point_cloud.ply"))
+        else:
+            self.gaussians.create_from_pcd(scene_info.point_cloud, self.cameras_extent)
 
         
-        diff_vis_folder = os.path.join(args.source_path, '__vis_diff_panodepth')
-        os.makedirs(diff_vis_folder,exist_ok=True)        
-        for k in range(1, len(distances_list)):
-            diff = (distances_list[k] - distances_list[0])[:,:,0]
-            diff = torch.abs(diff)
-            diff = diff / diff.max()
-            diff_vis_path = os.path.join(diff_vis_folder, '''diff_{:02d}.png'''.format(k))
-            imageio.imwrite(diff_vis_path, (diff*255).detach().cpu().numpy().astype(np.uint8))
-
-        for k, distances in enumerate(distances_list):
-            img = frames_torch[k]
-            pts = pcd_from_depths(img, distances, height, width, args.source_path)
-            colors = None
-            
-            print('Saving data for future use...')
-            save_data_k(args.source_path, k, img, distances, rot_w2c, fx, fy, cx, cy, pers_imgs, pts, pers_coords, colors)
-        
-        return 
-
     def generate_from_gif(self, args : ModelParams, gaussians : GaussianModel,  api_key, prompt_eng, num_prompt, max_rounds, load_iteration=None, shuffle=True, resolution_scales=[1.0],):
         """b
         :param path: Path to colmap scene main folder.
