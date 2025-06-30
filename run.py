@@ -35,6 +35,7 @@ def generate_scene(
     config_path, 
     python_bin_animating,
     python_bin_lifting,
+    video_frames,
 ):
     # do animating
     cmds = [
@@ -72,12 +73,10 @@ def generate_scene(
 
     cmds.append(f'cd {args.lifting_folder}')
     
-    cmds.extend(
-        [
-            f'{python_bin_lifting} generate_init_geo_4k.py -s {lifting_folder} -m {lifting_output}',
-            f'{python_bin_lifting} train.py -s {lifting_folder} -m {lifting_output}'
-        ]
-    )
+    cmds.append(f'{python_bin_lifting} generate_init_geo_4k.py -s {lifting_folder} -m {lifting_output}')
+    for k in range(video_frames):
+        cmds.append(f'{python_bin_lifting} train.py -s {lifting_folder}/{k:02d} -m {lifting_output}/{k:02d}')
+        
     #
     cmds.append('cd ..')
     # print('\n'.join(cmds))
@@ -157,6 +156,9 @@ def run():
     write_to = args.write_to
     os.makedirs(write_to_folder, exist_ok=True)
     
+    video_frames = args.video_frames
+    
+    
     for scene_name, files in to_run_list.items():
         img_p, mask_p, cfg_p = files
         cmds = generate_scene(
@@ -166,6 +168,7 @@ def run():
             cfg_p, 
             animating_env,
             lifting_env, 
+            video_frames
         )
         write_to_file = os.path.join(write_to_folder, f'{scene_name}.sh')
         with open(write_to_file, 'w') as fout:
