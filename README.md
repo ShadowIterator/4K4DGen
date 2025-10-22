@@ -52,6 +52,10 @@ cd animating
 conda env create -f environment.yml 
 cd ../4dlifting
 conda env create -f environment.yml 
+
+conda activate 4dlifting
+pip install submodules/diff-gaussian-rasterization-depth 
+pip install submodules/simple-knn
 ```
 
 ### Animating
