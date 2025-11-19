@@ -1,4 +1,4 @@
-# 4K4DGen: Panoramic 4D Generation at 4K Resolution
+# [ICLR 25 Spotlight] 4K4DGen: Panoramic 4D Generation at 4K Resolution 
 
 
 <p align="center">
